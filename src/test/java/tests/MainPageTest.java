@@ -3,17 +3,14 @@ package tests;
 import core.BaseTest;
 import helpers.TestValues;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.MainPage;
 import pages.SellWithUsPage;
 
 public class MainPageTest extends BaseTest {
 
-    @BeforeClass
-    public void beforeClass() {
-        setUp();
-    }
+
+
 
     @Test
     public void openContactUsPageTest() {
@@ -26,4 +23,7 @@ public class MainPageTest extends BaseTest {
         SellWithUsPage sellWithUsPage = new MainPage().openSellWithUsPage();
         Assert.assertEquals(sellWithUsPage.getHeader(), TestValues.SellWithUs.SELL_HEADER);
     }
+
+
+
 }

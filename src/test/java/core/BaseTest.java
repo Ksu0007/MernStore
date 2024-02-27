@@ -4,13 +4,15 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
 abstract public class BaseTest {
     protected WebDriver driver;
 
-    @Before
+    @BeforeMethod
     public void setUp() {
         System.out.println("Setting up WebDriver in setUp()");
         driver = new ChromeDriver();
@@ -21,10 +23,18 @@ abstract public class BaseTest {
         BasePage.setDriver(driver);
     }
 
-    @After
+    @AfterMethod
     public void tearDown() {
         if (driver != null) {
-            driver.quit();
+            try {
+                driver.close();
+                driver.quit();
+            } catch (Exception e) {
+                System.err.println("Error closing WebDriver: " + e.getMessage());
+            } finally {
+                driver = null;  // Set driver to null to avoid potential leaks
+            }
         }
     }
+
 }

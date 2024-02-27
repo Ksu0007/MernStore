@@ -5,7 +5,9 @@ import helpers.TestValues;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class MainPage extends BasePage {
@@ -14,7 +16,7 @@ public class MainPage extends BasePage {
         System.out.println("URL: " + TestValues.URL);
     }
 
-    @FindBy(xpath = "//*[@class=\"logo\"]")
+    @FindBy(xpath = "//h1[@class='logo']")
     private WebElement logo;
 
     @FindBy(xpath = "//*[@id=\"root\"]/div/footer/div/div[1]/div[2]/div[2]/ul/li[1]/a")
@@ -25,15 +27,15 @@ public class MainPage extends BasePage {
     private WebElement shippingLink;
 
     //customer service section
-    @FindBy(xpath = "//*[@id=\"root\"]/div/footer/div/div[1]/div[1]/div[1]/h3")
+    @FindBy(xpath = "//h3[@class='text-uppercase']")
     private WebElement customerServiceHeader;
-    @FindBy(xpath = "//*[@id=\"root\"]/div/footer/div/div[1]/div[1]/div[2]")
+    @FindBy(xpath = "//div[@class='footer-content']/div[1]//a[@href='/contact']")
     private List<WebElement> customerService;
     // elements in Customer Service
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/footer/div/div[1]/div[1]/div[2]/ul/li[1]")
+    @FindBy(xpath = "//div[@class='footer-content']/div[1]//a[@href='/contact']")
     private WebElement contactUsServiceLink;
-    @FindBy (xpath = "//*[@id=\"root\"]/div/footer/div/div[1]/div[1]/div[2]/ul/li[2]")
+    @FindBy (xpath = "//div[@class='footer-content']/div[1]//a[@href='/sell']")
     private WebElement sellServiceLink;
 
 
@@ -52,10 +54,12 @@ public class MainPage extends BasePage {
 
     public ContactUsPage openContactUsPage() {
         contactUsServiceLink.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return new ContactUsPage();
     }
     public SellWithUsPage openSellWithUsPage(){
         sellServiceLink.click();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return new SellWithUsPage();
     }
 }

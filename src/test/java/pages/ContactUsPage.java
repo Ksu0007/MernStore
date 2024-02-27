@@ -9,7 +9,7 @@ public class ContactUsPage extends BasePage {
     @FindBy(className = "logo")
     private WebElement logo;
 
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/div/div/h3")
+    @FindBy(xpath = "//h3[text()='Contact Information']")
     private WebElement contactPageHeader;
 
 

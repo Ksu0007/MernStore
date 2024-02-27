@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class SellWithUsPage extends BasePage {
-    @FindBy(xpath = "//*[@id=\"root\"]/div/main/div/div/div/h3")
+    @FindBy(xpath = "//h3[text()='Become A MERN Store Seller!']")
     private WebElement header;
 
     public String getHeader() {return header.getText();}
